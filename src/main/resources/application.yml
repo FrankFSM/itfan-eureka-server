@@ -1,0 +1,40 @@
+---
+server:
+  port: 8761
+security:
+  user:
+    name: ralap
+    password: hjx969190
+spring:
+  profiles: peer1
+  application:
+    name: itfan-eureka-server
+eureka:
+  instance:
+    hostname: www.itfan01.top
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://ralap:hjx969190@www.itfan02.top:8762/eureka/
+  server:
+    enable-self-preservation: false
+---
+server:
+  port: 8762
+security:
+  user:
+    name: ralap
+    password: hjx969190
+spring:
+  application:
+    name: itfan-eureka-server
+  profiles: peer2
+eureka:
+  instance:
+    hostname: www.itfan02.top
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://ralap:hjx969190@www.itfan01.top:8761/eureka/
+  server:
+    enable-self-preservation: false
